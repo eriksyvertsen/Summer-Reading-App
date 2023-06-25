@@ -1,0 +1,39 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Summer Reading App</title>
+</head>
+<body>
+    <header>
+        <h1>Summer Reading App</h1>
+    </header>
+
+    <main>
+        <form id="reading-log-form">
+            <label for="book-title">Book Title</label>
+            <input type="text" id="book-title" required>
+
+            <label for="author">Author</label>
+            <input type="text" id="author" required>
+
+            <label for="start-time">Reading Start Time</label>
+            <input type="datetime-local" id="start-time" required>
+
+            <label for="end-time">Reading End Time</label>
+            <input type="datetime-local" id="end-time" required>
+
+            <button type="submit">Log Reading</button>
+        </form>
+
+        <section id="reading-logs">
+            <!-- Reading logs will be dynamically generated here -->
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
