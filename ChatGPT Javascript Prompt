@@ -1,0 +1,82 @@
+Prompt: Write a JavaScript file to with the HTML and CSS above to handle user interactions and perform the necessary actions for our reading log applicaiton. This should capture the input values, validate them, and store them in an array or an object.
+Response:
+Certainly! Here's an example of a JavaScript file that handles user interactions, captures input values, validates them, and stores them in an array:
+
+JavaScript (script.js):
+```javascript
+// Array to store reading logs
+let readingLogs = [];
+
+// Function to handle form submission
+function handleFormSubmit(event) {
+    event.preventDefault();
+
+    // Get input values
+    const bookTitle = document.getElementById('book-title').value;
+    const author = document.getElementById('author').value;
+    const startTime = document.getElementById('start-time').value;
+    const endTime = document.getElementById('end-time').value;
+
+    // Validate inputs
+    if (bookTitle.trim() === '' || author.trim() === '' || startTime === '' || endTime === '') {
+        alert('Please fill out all fields');
+        return;
+    }
+
+    // Create a new reading log object
+    const newLog = {
+        bookTitle,
+        author,
+        startTime,
+        endTime
+    };
+
+    // Add the new reading log to the array
+    readingLogs.push(newLog);
+
+    // Clear form inputs
+    document.getElementById('book-title').value = '';
+    document.getElementById('author').value = '';
+    document.getElementById('start-time').value = '';
+    document.getElementById('end-time').value = '';
+
+    // Display the updated reading logs
+    displayReadingLogs();
+}
+
+// Function to display reading logs
+function displayReadingLogs() {
+    const readingLogsSection = document.getElementById('reading-logs');
+
+    // Clear any existing logs
+    readingLogsSection.innerHTML = '';
+
+    // Iterate over readingLogs array and generate HTML for each log
+    readingLogs.forEach((log, index) => {
+        const logHtml = `
+            <div class="log">
+                <h3>${log.bookTitle}</h3>
+                <p><strong>Author:</strong> ${log.author}</p>
+                <p><strong>Start Time:</strong> ${log.startTime}</p>
+                <p><strong>End Time:</strong> ${log.endTime}</p>
+            </div>
+        `;
+
+        // Append each log HTML to the reading logs section
+        readingLogsSection.innerHTML += logHtml;
+    });
+}
+
+// Event listener for form submission
+document.getElementById('reading-log-form').addEventListener('submit', handleFormSubmit);
+```
+
+In this example, we define an array called `readingLogs` to store the reading logs. The `handleFormSubmit` function is called when the form is submitted. It captures the input values, validates them, and creates a new reading log object. The object is then added to the `readingLogs` array.
+
+The `displayReadingLogs` function generates HTML for each reading log in the array and appends it to the "reading-logs" section in the HTML. This function is called whenever a new reading log is added to the array or when the page is loaded.
+
+Please note that this JavaScript code assumes that you have an HTML element with the ID "reading-logs" to display the reading logs. Make sure to include this element in your HTML file.
+
+Remember to link the JavaScript file in the HTML `<body>` section before the closing `</body>` tag by adjusting the `src` attribute in the `<script>` tag.
+
+Feel free to modify the code as per your specific requirements or add additional functionality to suit your needs.
