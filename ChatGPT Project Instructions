@@ -6,7 +6,7 @@ To develop the reading log application using Replit, you can make use of HTML, C
 1. Set up the project: Create a new HTML file, CSS file, and JavaScript file in your Replit project.
 
 2. Design the user interface: Use HTML and CSS to create the layout and styling for your application. You can have input fields for the book title, author, reading start time, reading end time, and a submit button to log the reading time.
-
+SEE: https://github.com/eriksyvertsen/Summer-Reading-App/commit/4316d601da0e45bb8b09d72d2b25f569468c4447
 3. Implement the functionality: In your JavaScript file, write code to handle user interactions and perform the necessary actions. For example, you can capture the input values, validate them, and store them in an array or an object.
 
 4. Save the data: To save the reading logs online, you can utilize Replit's built-in database functionality. You can use the `replitdb` package to store and retrieve the reading logs. Each time a reading log is submitted, you can save it to the database.
