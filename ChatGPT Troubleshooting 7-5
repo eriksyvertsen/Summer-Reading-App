@@ -211,3 +211,34 @@ This assumes that your index.html file is located in a folder named "public". Ad
 7. Check the Replit logs: Click on the "Logs" tab in Replit and check if there are any error messages being displayed. The logs can provide additional information about any issues that may be causing the "Replit Not Found" page.
 
 By following these troubleshooting steps, you should be able to identify and resolve any issues preventing the Express server from running correctly.
+
+##Prompt##
+Moving the files to the root directory worked.  Now I get this error:
+Failed to retrieve reading logs
+
+##Response##
+If you are seeing the "Failed to retrieve reading logs" error, it means that the frontend is unable to fetch the reading logs from the backend API. Here are some steps to troubleshoot this issue:
+
+1. Make sure the server is running: Ensure that the Express server is running and listening on the correct port. Check the console output for any errors or messages related to the server startup.
+
+2. Verify the API route: Double-check that the API route `/api/reading-logs` in the frontend matches the corresponding route in the backend server. In the server.js file, ensure that the API route is defined as follows:
+
+```javascript
+app.get('/api/reading-logs', async (req, res) => {
+  // Your implementation to retrieve reading logs from the database
+});
+```
+
+3. Check the API response: Use a tool like Postman or curl to send a GET request to the `/api/reading-logs` route and check the response. If the response is empty or not as expected, it indicates an issue with retrieving the reading logs from the database.
+
+4. Verify the database connection: Ensure that your MongoDB database is set up correctly and that the connection string in the server.js file is accurate. Check that you have the necessary permissions to access the database.
+
+5. Check the CORS configuration: If your frontend and backend are running on different origins (e.g., different ports or domains), ensure that you have correctly configured CORS in your Express server. You can use the `cors` middleware to enable cross-origin requests. Add the following line of code to your server.js file:
+
+```javascript
+app.use(cors());
+```
+
+6. Examine the console for errors: Check the browser console for any errors related to the frontend code. Look for network errors or any errors that may indicate an issue with the fetch request to the backend API.
+
+By following these troubleshooting steps, you should be able to identify and resolve the issue causing the "Failed to retrieve reading logs" error.
