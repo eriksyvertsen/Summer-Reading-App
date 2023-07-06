@@ -1,0 +1,213 @@
+##System Prompt##
+You are a programer working on a reading app website.  You are using Replit to build and host your website. 
+
+Here is the code so far:
+
+script.js
+```// Array to store reading logs
+let readingLogs = [];
+
+// Function to handle form submission
+function handleFormSubmit(event) {
+    event.preventDefault();
+
+    // Get input values
+    const bookTitle = document.getElementById('book-title').value;
+    const author = document.getElementById('author').value;
+    const startTime = document.getElementById('start-time').value;
+    const endTime = document.getElementById('end-time').value;
+
+    // Validate inputs
+    if (bookTitle.trim() === '' || author.trim() === '' || startTime === '' || endTime === '') {
+        alert('Please fill out all fields');
+        return;
+    }
+
+    // Create a new reading log object
+    const newLog = {
+        bookTitle,
+        author,
+        startTime,
+        endTime
+    };
+
+    // Add the new reading log to the array
+    readingLogs.push(newLog);
+
+    // Clear form inputs
+    document.getElementById('book-title').value = '';
+    document.getElementById('author').value = '';
+    document.getElementById('start-time').value = '';
+    document.getElementById('end-time').value = '';
+
+    // Display the updated reading logs
+    displayReadingLogs();
+}
+
+// Function to display reading logs
+function displayReadingLogs() {
+    const readingLogsSection = document.getElementById('reading-logs');
+
+    // Clear any existing logs
+    readingLogsSection.innerHTML = '';
+
+    // Iterate over readingLogs array and generate HTML for each log
+    readingLogs.forEach((log, index) => {
+        const logHtml = `
+            <div class="log">
+                <h3>${log.bookTitle}</h3>
+                <p><strong>Author:</strong> ${log.author}</p>
+                <p><strong>Start Time:</strong> ${log.startTime}</p>
+                <p><strong>End Time:</strong> ${log.endTime}</p>
+            </div>
+        `;
+
+        // Append each log HTML to the reading logs section
+        readingLogsSection.innerHTML += logHtml;
+    });
+}
+
+// Event listener for form submission
+document.getElementById('reading-log-form').addEventListener('submit', handleFormSubmit);```
+
+styles.css
+```/* Body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+header {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #333;
+}
+
+/* Main styles */
+main {
+    padding: 20px;
+}
+
+/* Form styles */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+form input[type="text"],
+form input[type="datetime-local"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Reading log styles */
+#reading-logs {
+    margin-top: 20px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    form input[type="text"],
+    form input[type="datetime-local"] {
+        width: 100%;
+    }
+}```
+
+index.html
+```<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Summer Reading App</title>
+</head>
+<body>
+    <header>
+        <h1>Summer Reading App</h1>
+    </header>
+
+    <main>
+        <form id="reading-log-form">
+            <label for="book-title">Book Title</label>
+            <input type="text" id="book-title" required>
+
+            <label for="author">Author</label>
+            <input type="text" id="author" required>
+
+            <label for="start-time">Reading Start Time</label>
+            <input type="datetime-local" id="start-time" required>
+
+            <label for="end-time">Reading End Time</label>
+            <input type="datetime-local" id="end-time" required>
+
+            <button type="submit">Log Reading</button>
+        </form>
+
+        <section id="reading-logs">
+            <!-- Reading logs will be dynamically generated here -->
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>```
+
+##Prompt:##
+The dependiecy installed sucessfully without error. 
+
+Now the site serves a replit not found page.  What are the steps to troubleshoot this?
+
+##Response##
+If the site is serving a "Replit Not Found" page, it means that the Express server is not running or not configured correctly. Here are some steps to troubleshoot the issue:
+
+1. Check the server.js file: Make sure that the server.js file is located in the root directory of your project. Verify that the file name is correct and that the code inside server.js is correct.
+
+2. Check the server port: By default, the server is configured to listen on port 3000. Ensure that the port is correctly set in the server.js file. You can change the port if it conflicts with other services.
+
+3. Restart the server: Stop the current server by clicking the "Stop" button in Replit and then start it again by clicking the "Run" button. Check the console output for any error messages.
+
+4. Verify the server is running: After restarting the server, check the console output to see if it displays the "Server started on port XXXX" message. If you don't see this message, there may be an error in your server.js file.
+
+5. Check for any error messages: If there is an error in your server.js file, it may prevent the server from starting correctly. Look for any error messages in the console output and address them accordingly.
+
+6. Ensure the correct file is being served: Make sure that the Express server is correctly serving the index.html file. In the server.js file, add the following code after the route definitions:
+
+```javascript
+app.use(express.static('public'));
+
+// Route for serving the index.html file
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
+```
+
+This assumes that your index.html file is located in a folder named "public". Adjust the path accordingly if your file is located in a different folder.
+
+7. Check the Replit logs: Click on the "Logs" tab in Replit and check if there are any error messages being displayed. The logs can provide additional information about any issues that may be causing the "Replit Not Found" page.
+
+By following these troubleshooting steps, you should be able to identify and resolve any issues preventing the Express server from running correctly.
